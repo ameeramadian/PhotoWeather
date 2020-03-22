@@ -1,7 +1,7 @@
-package com.app.photoweather
+package com.ameera.photoweather
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
