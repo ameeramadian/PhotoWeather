@@ -1,4 +1,4 @@
-package com.app.photoweather.weather.fragment
+package com.app.photoweather.weather.ui
 
 import android.content.Intent
 import android.graphics.Bitmap

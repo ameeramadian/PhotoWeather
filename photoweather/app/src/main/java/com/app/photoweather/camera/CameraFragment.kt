@@ -108,13 +108,10 @@ class CameraFragment : Fragment() {
     ): View? =
         inflater.inflate(R.layout.fragmnet_camera, container, false)
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         container = view as ConstraintLayout
         viewFinder = container.findViewById(R.id.view_finder)
-
-        // Initialize our background executor
         cameraExecutor = Executors.newSingleThreadExecutor()
         broadcastManager = LocalBroadcastManager.getInstance(view.context)
         val filter = IntentFilter().apply { addAction(KEY_DOWN_EVENT_ACTION) }
@@ -271,6 +268,17 @@ class CameraFragment : Fragment() {
                             ) { _, uri ->
                                 Log.d(TAG, "Image capture scanned into media store: $uri")
                             }
+
+                            if (true == outputDirectory.listFiles()?.isNotEmpty()) {
+                                Navigation.findNavController(
+                                    requireActivity(),
+                                    R.id.fragment_container
+                                ).navigate(
+                                    CameraFragmentDirections.actionCameraToWeather(
+                                        outputDirectory.absolutePath
+                                    )
+                                )
+                            }
                         }
                     })
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -301,7 +309,7 @@ class CameraFragment : Fragment() {
                     requireActivity(),
                     R.id.fragment_container
                 ).navigate(
-                    CameraFragmentDirections.actionCameraToWeather(
+                    CameraFragmentDirections.actionCameraFragmentToGallery(
                         outputDirectory.absolutePath
                     )
                 )
@@ -311,7 +319,7 @@ class CameraFragment : Fragment() {
 
     companion object {
 
-        private const val TAG = "CameraXBasic"
+        private const val TAG = "CameraX"
         private const val FILENAME = "yyyy-MM-dd-HH-mm-ss-SSS"
         private const val PHOTO_EXTENSION = ".jpg"
         private const val RATIO_4_3_VALUE = 4.0 / 3.0

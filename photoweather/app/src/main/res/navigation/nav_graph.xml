@@ -32,12 +32,25 @@
             app:popUpTo="@id/camera_fragment"
             app:popUpToInclusive="true" />
 
+        <action
+            android:id="@+id/action_camera_fragment_to_gallery"
+            app:destination="@id/gallery_fragment" />
+
     </fragment>
 
     <fragment
         android:id="@+id/weather_fragment"
-        android:name="com.app.photoweather.weather.fragment.WeatherFragment"
+        android:name="com.app.photoweather.weather.ui.WeatherFragment"
         android:label="WeatherFragment">
+        <argument
+            android:name="root_directory"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/gallery_fragment"
+        android:name="com.app.photoweather.gallery.ui.GalleryFragment"
+        android:label="GalleryFragment">
         <argument
             android:name="root_directory"
             app:argType="string" />
