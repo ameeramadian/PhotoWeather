@@ -1,13 +1,15 @@
 package com.app.photoweather.gallery.ui
 
+import android.app.Activity
 import android.view.View
 import android.widget.ImageView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.app.photoweather.R
 import com.bumptech.glide.Glide
 import java.io.File
 
-class GalleryViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
+class GalleryViewHolder(view: View, val activity: Activity) : RecyclerView.ViewHolder(view) {
 
     private var imageView: ImageView? = null
 
@@ -15,10 +17,23 @@ class GalleryViewHolder(private val view: View) : RecyclerView.ViewHolder(view) 
         imageView = view.findViewById(R.id.gallery_item_imageView)
     }
 
-    fun binTo(imgFile: File) {
+    fun binTo(imgFile: File, position: Int) {
         imageView?.let {
             Glide.with(it).load(imgFile).into(it)
+
+            it.setOnClickListener {
+                Navigation.findNavController(
+                    activity,
+                    R.id.fragment_container
+                ).navigate(
+                    GalleryFragmentDirections.actionGalleryFragmentToWeatherFragment(
+                        position
+                    )
+                )
+            }
         }
+
+
     }
 
 }

@@ -22,6 +22,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.app.photoweather.R
 import com.app.photoweather.camera.CameraFragment.Companion.EXTENSION_WHITELIST
+import com.app.photoweather.main.MainActivity
 import com.app.photoweather.weather.model.WeatherResponse
 import com.app.photoweather.weather.model.WeatherResponseViewModel
 import com.bumptech.glide.Glide
@@ -47,13 +48,19 @@ class WeatherFragment : Fragment() {
     private var lon: Double? = null
     private var lat: Double? = null
 
+    private var position: Int? = null
     private val args: WeatherFragmentArgs by navArgs()
     private val weatherViewModel: WeatherResponseViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val rootDirectory = File(args.rootDirectory)
+        position = args.position
+        val outputDirectory =
+            MainActivity.getOutputDirectory(
+                requireContext()
+            )
+        val rootDirectory = File(outputDirectory.absolutePath)
         mediaList = rootDirectory.listFiles { file ->
             EXTENSION_WHITELIST.contains(file.extension.toUpperCase(Locale.ROOT))
         }?.sortedDescending()?.toMutableList() ?: mutableListOf()
@@ -76,7 +83,10 @@ class WeatherFragment : Fragment() {
         weatherConditionTextView = view.findViewById(R.id.tv_weather_condition)
         weatherConditionImageView = view.findViewById(R.id.iv_weather_condition)
         locationTextView = view.findViewById(R.id.tv_city_country)
-        Glide.with(oldImageView).load(mediaList[0].absoluteFile).into(oldImageView)
+        position?.let {
+            Glide.with(oldImageView).load(mediaList[it].absoluteFile).into(oldImageView)
+        }
+
         weatherViewModel.weatherResponse.observe(this, Observer {
             setWeatherData(it)
         })

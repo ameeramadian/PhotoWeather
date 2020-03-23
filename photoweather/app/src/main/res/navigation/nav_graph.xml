@@ -42,18 +42,23 @@
         android:id="@+id/weather_fragment"
         android:name="com.app.photoweather.weather.ui.WeatherFragment"
         android:label="WeatherFragment">
+
         <argument
-            android:name="root_directory"
-            app:argType="string" />
+            android:name="position"
+            app:argType="integer" />
+
     </fragment>
 
     <fragment
         android:id="@+id/gallery_fragment"
         android:name="com.app.photoweather.gallery.ui.GalleryFragment"
         android:label="GalleryFragment">
-        <argument
-            android:name="root_directory"
-            app:argType="string" />
+
+        <action
+            android:id="@+id/action_gallery_fragment_to_weather_fragment"
+            app:destination="@id/weather_fragment">
+
+        </action>
     </fragment>
 
 </navigation>

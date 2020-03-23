@@ -275,7 +275,7 @@ class CameraFragment : Fragment() {
                                     R.id.fragment_container
                                 ).navigate(
                                     CameraFragmentDirections.actionCameraToWeather(
-                                        outputDirectory.absolutePath
+                                        0
                                     )
                                 )
                             }
@@ -309,9 +309,7 @@ class CameraFragment : Fragment() {
                     requireActivity(),
                     R.id.fragment_container
                 ).navigate(
-                    CameraFragmentDirections.actionCameraFragmentToGallery(
-                        outputDirectory.absolutePath
-                    )
+                    CameraFragmentDirections.actionCameraFragmentToGallery()
                 )
             }
         }
