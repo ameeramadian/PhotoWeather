@@ -17,10 +17,9 @@ class GalleryViewHolder(view: View, val activity: Activity) : RecyclerView.ViewH
         imageView = view.findViewById(R.id.gallery_item_imageView)
     }
 
-    fun binTo(imgFile: File, position: Int) {
+    fun bindTo(imgFile: File, position: Int) {
         imageView?.let {
             Glide.with(it).load(imgFile).into(it)
-
             it.setOnClickListener {
                 Navigation.findNavController(
                     activity,
@@ -32,8 +31,6 @@ class GalleryViewHolder(view: View, val activity: Activity) : RecyclerView.ViewH
                 )
             }
         }
-
-
     }
 
 }

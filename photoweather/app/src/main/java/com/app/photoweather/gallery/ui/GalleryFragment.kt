@@ -18,14 +18,7 @@ class GalleryFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val outputDirectory =
-            MainActivity.getOutputDirectory(
-                requireContext()
-            )
-        val rootDirectory = File(outputDirectory.absolutePath)
-        mediaList = rootDirectory.listFiles { file ->
-            CameraFragment.EXTENSION_WHITELIST.contains(file.extension.toUpperCase(Locale.ROOT))
-        }?.sortedDescending()?.toMutableList() ?: mutableListOf()
+        getMediaList()
     }
 
     override fun onCreateView(
@@ -44,4 +37,16 @@ class GalleryFragment : Fragment() {
         recyclerView?.adapter = adapter
 
     }
+
+    private fun getMediaList() {
+        val outputDirectory =
+            MainActivity.getOutputDirectory(
+                requireContext()
+            )
+        val rootDirectory = File(outputDirectory.absolutePath)
+        mediaList = rootDirectory.listFiles { file ->
+            CameraFragment.EXTENSION_WHITELIST.contains(file.extension.toUpperCase(Locale.ROOT))
+        }?.sortedDescending()?.toMutableList() ?: mutableListOf()
+    }
+
 }

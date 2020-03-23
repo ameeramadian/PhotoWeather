@@ -3,12 +3,12 @@
 
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#AAFFFFFF</color>
 
     <color name="icActive">#FFFFFFFF</color>
     <color name="icFocused">#DDFFFFFF</color>
     <color name="icPressed">#AAFFFFFF</color>
 
-    <color name="colorPrimaryText">#FFFFFFFF</color>
+    <color name="colorPrimaryText">#AAFFFFFF</color>
 
 </resources>

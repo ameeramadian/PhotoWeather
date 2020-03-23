@@ -27,7 +27,7 @@ class GalleryAdapter(private val mediaList: MutableList<File>?, private val acti
 
     override fun onBindViewHolder(holder: GalleryViewHolder, position: Int) {
         mediaList?.let {
-            holder.binTo(mediaList[position].absoluteFile, position)
+            holder.bindTo(mediaList[position].absoluteFile, position)
         }
     }
 }

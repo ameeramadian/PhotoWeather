@@ -42,4 +42,5 @@ class WeatherRepository {
     companion object {
         private const val appID: String = BuildConfig.WEATHER_APP_ID
     }
+
 }

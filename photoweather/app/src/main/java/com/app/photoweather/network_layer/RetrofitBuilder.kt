@@ -16,7 +16,6 @@ class RetrofitBuilder {
 
         fun build(): Retrofit {
             val httpClient = getHttpClientBuilder()
-            addContentInterceptor(httpClient)
             if (BuildConfig.DEBUG) {
                 addLoggingInterceptor(httpClient)
             }
@@ -31,18 +30,12 @@ class RetrofitBuilder {
                 .build()
         }
 
-
         private fun getHttpClientBuilder(): OkHttpClient.Builder {
             val httpClient = OkHttpClient().newBuilder()
             httpClient.readTimeout(SIXTY_SECONDS_TIMEOUT, TimeUnit.SECONDS)
             httpClient.writeTimeout(SIXTY_SECONDS_TIMEOUT, TimeUnit.SECONDS)
             httpClient.connectTimeout(SIXTY_SECONDS_TIMEOUT, TimeUnit.SECONDS)
             return httpClient
-        }
-
-        private fun addContentInterceptor(httpClient: OkHttpClient.Builder) {
-            val contentInterceptor = EmptyContentInterceptor()
-            httpClient.interceptors().add(contentInterceptor)
         }
 
         private fun addLoggingInterceptor(httpClient: OkHttpClient.Builder) {

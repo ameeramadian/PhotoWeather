@@ -31,14 +31,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.Navigation
-import com.android.example.cameraxbasic.utils.ANIMATION_FAST_MILLIS
-import com.android.example.cameraxbasic.utils.ANIMATION_SLOW_MILLIS
-import com.android.example.cameraxbasic.utils.simulateClick
 import com.app.photoweather.R
 import com.app.photoweather.main.KEY_DOWN_EVENT_ACTION
 import com.app.photoweather.main.KEY_DOWN_EVENT_EXTRA
 import com.app.photoweather.main.MainActivity
 import com.app.photoweather.main.PermissionsFragment
+import com.app.photoweather.utils.ANIMATION_FAST_MILLIS
+import com.app.photoweather.utils.ANIMATION_SLOW_MILLIS
+import com.app.photoweather.utils.simulateClick
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.coroutines.Dispatchers
@@ -158,7 +158,7 @@ class CameraFragment : Fragment() {
     /** Helper Methods **/
 
     private fun setGalleryThumbnail(uri: Uri) {
-        val thumbnail = container.findViewById<ImageButton>(R.id.photo_view_button)
+        val thumbnail = container.findViewById<ImageButton>(R.id.open_gallery_button)
         thumbnail.post {
             Glide.with(thumbnail)
                 .load(uri)
@@ -303,7 +303,7 @@ class CameraFragment : Fragment() {
             bindCameraUseCases()
         }
 
-        controls.findViewById<ImageButton>(R.id.photo_view_button).setOnClickListener {
+        controls.findViewById<ImageButton>(R.id.open_gallery_button).setOnClickListener {
             if (true == outputDirectory.listFiles()?.isNotEmpty()) {
                 Navigation.findNavController(
                     requireActivity(),
