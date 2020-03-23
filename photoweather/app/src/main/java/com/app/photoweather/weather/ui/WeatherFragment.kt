@@ -193,7 +193,7 @@ class WeatherFragment : Fragment(), iWeatherView {
             .getAddressLine(0)
         val city: String = addresses[0].locality
         val country: String = addresses[0].countryName
-        return "${city},${country}"
+        return "${city}, ${country}"
     }
 
     override fun showLoading() {
